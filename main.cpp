@@ -30,15 +30,21 @@ int main(int argc, char** arg)
 	sf::Color color(sf::Color::Red);
 	
 
-	SpriteCreator spCreator;		
+	TextureCreator textureCreator;
 
-	auto spriteBG = spCreator.CreateSpriteObject(IMAGE_PATH + "background-night.png");
-	spriteBG->setOrigin(spriteBG->getLocalBounds().width / 2.0f, spriteBG->getLocalBounds().height / 2.0f);
-	auto spritePipe = spCreator.CreateSpriteObject(IMAGE_PATH + "pipe-green.png");
-	auto spritePipe2 = spCreator.CreateSpriteObject(IMAGE_PATH + "pipe-green.png");
-	spritePipe2->setPosition(3* WIDTH / 4, 3 * HEIGHT / 4);
+	auto bgTexture = textureCreator.CreateTexture(IMAGE_PATH + "background-night.png");
+	auto baseTexture = textureCreator.CreateTexture(IMAGE_PATH + "base.png", true);
+	auto pipeTexture = textureCreator.CreateTexture(IMAGE_PATH + "pipe-green.png");
+	auto birdTexture = textureCreator.CreateTexture(IMAGE_PATH + "redbird-midflap.png");
+
+	float gameHeight = HEIGHT - baseTexture->getSize().y;
+	ScrollingBackground scrolling(baseTexture, sf::Vector2f(0, gameHeight));
+
 	
-	Player flappybird = Player(spCreator.CreateSpriteObject(IMAGE_PATH + "redbird-midflap.png"), sf::Vector2f(WIDTH/2, HEIGHT/2));
+	PipeManager pipeMgr(pipeTexture, sf::Vector2f(3 * WIDTH / 4, gameHeight / 2));
+	//PipeTrap pipeTrap(pipeTexture, sf::Vector2f( 3 * WIDTH / 4, gameHeight / 2));
+	Player flappybird(birdTexture, sf::Vector2f(WIDTH/2, gameHeight /2));
+
 
 	sf::Clock clock;
 	sf::Clock frameTime;
@@ -127,18 +133,23 @@ int main(int argc, char** arg)
 		if (gameStart)
 		{
 			flappybird.Update(dt.asSeconds());
-
-			if (spritePipe->getGlobalBounds().intersects(spritePipe2->getGlobalBounds()))
+			scrolling.Update(view);
+			pipeMgr.Update(view);
+			/*if (spritePipe->getGlobalBounds().intersects(spritePipe2->getGlobalBounds()))
 			{
 				std::cout << "HIT! PIPE & PIPE2\n";
-			}
+			}*/
 		}
+
 
 
 		auto viewpos = view.getCenter();
 		viewpos.x = flappybird.GetPosition().x;
 		view.setCenter(viewpos);
-		spriteBG->setPosition(viewpos);
+		//spriteBG->setPosition(viewpos);
+
+		txtFPS.setPosition(view.getCenter());
+		txtFPS.setString("FPS:" + std::to_string(flappybird.GetPosition().x));
 
 		/*
 		txtFPS.setString("FPS:" + std::to_string(fRot));
@@ -147,12 +158,13 @@ int main(int argc, char** arg)
 
 
 		renderWindow.clear(color);
-		renderWindow.draw(*spriteBG);
-		renderWindow.draw(*spritePipe);
-		renderWindow.draw(*spritePipe2);
+	//	renderWindow.draw(*spriteBG);
 		renderWindow.draw(txtFPS);
 		renderWindow.draw(txtSpeed);
 		renderWindow.draw(txtPos);
+
+		pipeMgr.Draw(renderWindow);
+		scrolling.Draw(renderWindow);
 		flappybird.Draw(renderWindow);
 		
 		renderWindow.setView(view);
