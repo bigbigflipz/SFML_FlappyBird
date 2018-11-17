@@ -1,0 +1,6 @@
+*.db
+*.opendb
+*.suo
+FlappyBird/x64/Debug
+.vs
+FlappyBird/Debug
