@@ -4,3 +4,9 @@
 FlappyBird/x64/Debug
 .vs
 FlappyBird/Debug
+Debug/FlappyBird.exe
+*.ilk
+Debug/FlappyBird.pdb
+Debug/FlappyBird.exe
+Debug/FlappyBird.ilk
+Debug/FlappyBird.pdb

@@ -10,18 +10,19 @@
 
 const int WIDTH = 288;
 const int HEIGHT = 512;
-const float MAX = 350.0f;
 
-bool gameStart = true;
+
+bool gameStart = false;
 float speed{ 0 };
-float gravity{ 0.5f };
-float jump{ -MAX };
+
+
 
 static const std::string IMAGE_PATH("../resources/images/sprites/");
 
 int main(int argc, char** arg)
 {
-	sf::RenderWindow renderWindow(sf::VideoMode(288, 512), "SFML Demo");
+	sf::RenderWindow renderWindow(sf::VideoMode(WIDTH, HEIGHT), "SFML Demo");
+	sf::View view(sf::Vector2f(WIDTH/2, HEIGHT/2), sf::Vector2f(WIDTH, HEIGHT));
 
 	sf::Event event;
 
@@ -32,13 +33,12 @@ int main(int argc, char** arg)
 	SpriteCreator spCreator;		
 
 	auto spriteBG = spCreator.CreateSpriteObject(IMAGE_PATH + "background-night.png");
+	spriteBG->setOrigin(spriteBG->getLocalBounds().width / 2.0f, spriteBG->getLocalBounds().height / 2.0f);
 	auto spritePipe = spCreator.CreateSpriteObject(IMAGE_PATH + "pipe-green.png");
 	auto spritePipe2 = spCreator.CreateSpriteObject(IMAGE_PATH + "pipe-green.png");
 	spritePipe2->setPosition(3* WIDTH / 4, 3 * HEIGHT / 4);
 	
-	auto sprite = spCreator.CreateSpriteObject(IMAGE_PATH + "redbird-midflap.png");
-	sprite->setOrigin(sprite->getLocalBounds().width / 2.0f, sprite->getLocalBounds().height / 2.0f);
-	sprite->setPosition(WIDTH / 2, HEIGHT / 2);
+	Player flappybird = Player(spCreator.CreateSpriteObject(IMAGE_PATH + "redbird-midflap.png"), sf::Vector2f(WIDTH/2, HEIGHT/2));
 
 	sf::Clock clock;
 	sf::Clock frameTime;
@@ -103,119 +103,59 @@ int main(int argc, char** arg)
 	// set the text style
 	txtSpeed.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
-	while (renderWindow.isOpen()) {
+	while (renderWindow.isOpen()) 
+	{
 
 		sf::Time dt = frameTime.restart();
-		sf::Vector2f position = sprite->getPosition();
-
-
-
+			   		 	  
 		// Check for all the events that occured since the last frame.
 		while (renderWindow.pollEvent(event)) {
 			//Handle events here
 			if (event.type == sf::Event::EventType::Closed)
 				renderWindow.close();
 
-			// Now demonstrate input via polling
-			if (FBInput::IsKeyDown(event, sf::Keyboard::R))
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
-					color.r = 0;
-				else
-					color.r = randomColorRange(randomNumbers);
 
-			else if (FBInput::IsKeyUp(event, sf::Keyboard::G))
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
-					color.g = 0;
-				else
-					color.g = randomColorRange(randomNumbers);
-			else if (FBInput::IsKeyPress(event, sf::Keyboard::B))
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
-					color.b = 0;
-				else
-					color.b = randomColorRange(randomNumbers);
-
-			if (FBInput::IsKeyPress(event, sf::Keyboard::A))
-			{
-				sprite->setPosition(position.x - 1, position.y);
-			}
-			else if (FBInput::IsKeyPress(event, sf::Keyboard::D))
-			{
-				sprite->setPosition(position.x + 1, position.y);
-			}
-			
-			/*Control PIPE */
-			sf::Vector2f positionPipe = spritePipe->getPosition();
-			if (FBInput::IsKeyPress(event, sf::Keyboard::Left))
-			{
-				spritePipe->setPosition(positionPipe.x - 1, positionPipe.y);
-			}
-			else if (FBInput::IsKeyPress(event, sf::Keyboard::Right))
-			{
-				spritePipe->setPosition(positionPipe.x + 1, positionPipe.y);
-			}
-			else if (FBInput::IsKeyPress(event, sf::Keyboard::Up))
-			{
-				spritePipe->setPosition(positionPipe.x, positionPipe.y - 1);
-			}
-			else if (FBInput::IsKeyPress(event, sf::Keyboard::Down))
-			{
-				spritePipe->setPosition(positionPipe.x, positionPipe.y + 1);
-			}
-
+			flappybird.HandleInput(event);
 
 			if (FBInput::IsKeyDown(event, sf::Keyboard::Space))
 			{
-				speed = jump;
-				if (!gameStart)
-				{
-					gameStart = true;
-				}
-
+				gameStart = true;
 			}
+	
 		}
-
-		float fRot = 0;
-
+			   
 		if (gameStart)
 		{
-			position.y += speed * dt.asSeconds();
-			sprite->setPosition(position);
-			if (speed < MAX)
-				speed += gravity;
-			else
-				speed = MAX;
-
-
-			// angle range from (-45 deg to 90 deg )
-			// speed range from -MAX to MAX
-			// 0.8 is to smooth out the rotation
-			fRot = -45 + (135 / (MAX*2) * (speed+MAX))*0.8;
-
-			sprite->setRotation(fRot);
+			flappybird.Update(dt.asSeconds());
 
 			if (spritePipe->getGlobalBounds().intersects(spritePipe2->getGlobalBounds()))
 			{
 				std::cout << "HIT! PIPE & PIPE2\n";
 			}
-			if (spritePipe->getGlobalBounds().intersects(sprite->getGlobalBounds()))
-			{
-				std::cout << "HIT! PIPE & BIRD\n";
-			}
-			
-
 		}
+
+
+		auto viewpos = view.getCenter();
+		viewpos.x = flappybird.GetPosition().x;
+		view.setCenter(viewpos);
+		spriteBG->setPosition(viewpos);
+
+		/*
 		txtFPS.setString("FPS:" + std::to_string(fRot));
 		txtSpeed.setString("Speed: " +  std::to_string(speed));
-		txtPos.setString("Pos: " + std::to_string(position.x) + "," + std::to_string(position.y));
+		txtPos.setString("Pos: " + std::to_string(position.x) + "," + std::to_string(position.y));*/
+
 
 		renderWindow.clear(color);
 		renderWindow.draw(*spriteBG);
 		renderWindow.draw(*spritePipe);
 		renderWindow.draw(*spritePipe2);
-		renderWindow.draw(*sprite);
 		renderWindow.draw(txtFPS);
 		renderWindow.draw(txtSpeed);
 		renderWindow.draw(txtPos);
+		flappybird.Draw(renderWindow);
+		
+		renderWindow.setView(view);
 		renderWindow.display();
 	}
 }
