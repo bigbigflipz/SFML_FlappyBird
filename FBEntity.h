@@ -99,13 +99,21 @@ class PipeManager
 public:
 	PipeManager(std::shared_ptr<sf::Texture> pipeTexture, sf::Vector2f pos) :
 		m_pipeTexture(pipeTexture),
-		m_xStart(600)
+		m_xStart(600),
+		m_updown(-1),
+		m_middle(pos.y)
 
 	{
 		sf::Vector2f spawnPos(m_xStart, pos.y);
 
+	
+
 		for (int count = 0; count < 20; ++count)
 		{
+			auto randomNumber = rand() % 100 * m_updown;   //generate a random number then confine it to a value of 0 - 255.
+			std::cout << randomNumber << "\n";
+			m_updown *= -1;//flip it for next spawn
+			spawnPos.y = m_middle + randomNumber;
 			m_pipePool.emplace_back(std::shared_ptr<PipeTrap>(new PipeTrap(pipeTexture, spawnPos)));
 			spawnPos.x += m_pipeTexture->getSize().x * 3;
 		}
@@ -191,6 +199,8 @@ private:
 	//where will the first pipe appear
 	float m_xStart;
 	sf::Vector2f m_nextPos;
+	float m_middle;
+	int m_updown; // -1 for up, 1 for down
 	std::shared_ptr<sf::Texture> m_pipeTexture;
 	std::deque<std::shared_ptr<PipeTrap>> m_pipePool;
 	std::shared_ptr<sf::Texture> m_firstAvailable;
@@ -337,7 +347,7 @@ public:
 		m_jump(-350.0f),
 		m_speed(100.0f,0),
 		m_rot(0),
-		m_gravity(0.3f),
+		m_gravity(0.4f),
 		m_max(350.0f)
 	{
 		m_sprite = std::unique_ptr<sf::Sprite>(new sf::Sprite(*playerTexture));

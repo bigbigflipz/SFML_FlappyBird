@@ -61,10 +61,10 @@ int main(int argc, char** arg)
 	//https://www.reddit.com/r/programming/comments/1rnudl/quite_interesting_why_cs_rand_is_considered/
 	// Mostly doesn't apply to game devs if not using rand for say... security.
 
-	/*
+	
 	srand(time(NULL));          //seed random number generator with the current time
 	auto randomNumber = rand() % 255;   //generate a random number then confine it to a value of 0 - 255.
-	*/
+	
 
 
 
