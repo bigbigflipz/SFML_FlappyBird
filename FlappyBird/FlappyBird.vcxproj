@@ -131,7 +131,12 @@
     <ClCompile Include="..\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\FBBase.h" />
     <ClInclude Include="..\FBGame.h" />
+    <ClInclude Include="..\FBPipe.h" />
+    <ClInclude Include="..\FBPlayer.h" />
+    <ClInclude Include="..\FBTextureCreator.h" />
+    <ClInclude Include="..\FBUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
