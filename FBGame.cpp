@@ -24,28 +24,18 @@ FBGame::FBGame() :
 
 void FBGame::Init(sf::RenderWindow* window)
 {
-    std::string filename = "../highscore.txt";
-    std::fstream m_fileStreams("../highscore2.txt");
+    std::string filename = "../resources/savefile/highscore.txt";
+    std::ifstream m_fileStream(filename);
 
-    if (!m_fileStreams.is_open() && !m_fileStream.good())
+    if (!m_fileStream.is_open() && !m_fileStream.good())
     {
         std::cout << "failed to open " << filename << '\n';
     }
     else
     {
-         m_fileStreams >> m_highScore;
-         m_fileStreams << m_highScore + 1;
+        m_fileStream >> m_highScore;
     }
 
-    std::ifstream infilestream;
-    std::string line;
-
-    infilestream.open("../highscore2.txt");
-    while (infilestream)
-    {
-        std::getline(infilestream, line);
-    }
-    infilestream.close();
 
     if (nullptr == m_textureMgr)
         m_textureMgr = std::unique_ptr<TextureCreator>(new TextureCreator());
@@ -214,7 +204,17 @@ void FBGame::GameDraw(sf::RenderWindow* window)
 
 void FBGame::DeInit()
 {
-    m_fileStream << m_highScore;
+    std::ofstream m_fileStream("../resources/savefile/highscore.txt");
+
+    if (!m_fileStream.is_open() && !m_fileStream.good())
+    {
+        std::cout << "failed to open " << "../resources/savefile/highscore.txt" << '\n';
+    }
+    else
+    {
+        m_fileStream << m_highScore;
+    }
+
     m_fileStream.close();
 }
 
