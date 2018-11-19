@@ -6,6 +6,7 @@ const int HEIGHT = 512;
 int main(int argc, char** arg)
 {
     sf::RenderWindow renderWindow(sf::VideoMode(WIDTH, HEIGHT), "SFML Demo");
+    renderWindow.setFramerateLimit(60);
     sf::View view(sf::Vector2f(WIDTH / 2, HEIGHT / 2), sf::Vector2f(WIDTH, HEIGHT));
     sf::Event event;
 

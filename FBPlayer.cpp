@@ -11,7 +11,7 @@
             m_jump(-250.0f),
             m_speed(100.0f, 0),
             m_rot(0),
-            m_gravity(0.2f),
+            m_gravity(20.f),
             m_max(250.0f)
     {
         m_sprite.setTexture(*playerTexture, true);
