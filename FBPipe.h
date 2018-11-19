@@ -12,23 +12,46 @@ public:
 
     PipeTrap(std::shared_ptr<sf::Texture> pipeTexture, sf::Vector2f pos);
 
+    /* Initialize the Pipe Object */
     void Init(sf::Vector2f pos);
 
+    /* Render the upper and lower pipes sprite
+     * @param renderWindow window object
+     */
     void Draw(sf::RenderWindow& renderWindow);
 
+    /* Update pipe
+     * @param dt delta time of the frame
+     */
     void Update(sf::View& view);
 
+    /* Toggle the pipe to become active */
     void Activate();
 
+    /* Toggle the pipe to become inactive */
     void Deactivate();
 
+    /* Check collision between input and pipe
+     * @Player player object
+     * @return true if collided, else false
+     */
     bool CheckCollision(const Player& player);
 
+    /* Check collision between input and scorehitbox
+    * @Player player object
+    * @return true if collided, else false
+    */
     bool HitScore(const Player& player);
 
-    const auto GetPosition() const;
+    /* Get PipeTrap position, center of the two pipe sprite
+     * @return the position of the pipe
+     */
+    const sf::Vector2f& GetPosition() const;
 
-    const auto IsActive() const;
+    /* Check if pipe is active
+     * @return true is active, else false
+     */
+    const bool IsActive() const;
 
 private:
 

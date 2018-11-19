@@ -105,12 +105,12 @@
         return false;
     }
 
-    const auto PipeTrap::GetPosition() const
+    const sf::Vector2f& PipeTrap::GetPosition() const
     {
         return m_center;
     }
 
-    const auto PipeTrap::IsActive() const
+    const bool PipeTrap::IsActive() const
     {
         return m_active;
     }

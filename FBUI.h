@@ -19,12 +19,33 @@ public:
             std::shared_ptr<sf::Texture> seven,
             std::shared_ptr<sf::Texture> eight,
             std::shared_ptr<sf::Texture> nine);
-            
+    
+    /* Reset the sate of UI to game start */
     void Reset();
+
+    /* Update the Score Font to the correct number glyph
+     * @param score the number to display
+     */
     void UpdateScore(int score);
+
+    /* Update the High Score Font to the correct number glyph
+     * @param score the number to display
+     */
     void UpdateHighScore(int score);
+
+    /* Render the Score Font when game is running
+     * @param renderWindow window to render to
+     */
     void DrawScore(sf::RenderWindow& renderWindow);
+
+    /* Render the Instruction Font
+     * @param renderWindow window to render to
+     */
     void DrawInstruction(sf::RenderWindow& renderWindow);
+
+    /* Render the Score Font and High score font during game over
+     * @param renderWindow window to render to
+     */
     void DrawGameOverScore(sf::RenderWindow& renderWindow);
 
 private:

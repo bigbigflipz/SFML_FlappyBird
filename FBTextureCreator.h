@@ -13,7 +13,7 @@ public:
     TextureCreator& operator=(const TextureCreator& rhs) = delete;
 
     TextureCreator(TextureCreator&& rhs) = delete;
-    TextureCreator& operator=(TextureCreator& rhs) = delete;
+    TextureCreator& operator=(TextureCreator&& rhs) = delete;
 
     std::shared_ptr<sf::Texture> CreateTexture(std::string path, bool repeatTexture = false);
 
