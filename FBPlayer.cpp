@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component/FBInput.h"
+#include "FBInput.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Window/Event.hpp"
 #include <memory>
@@ -8,11 +8,11 @@
 
     Player::Player(std::shared_ptr<sf::Texture> playerTexture, sf::Vector2f pos) :
             m_initPos(pos),
-            m_jump(-300.0f),
+            m_jump(-250.0f),
             m_speed(100.0f, 0),
             m_rot(0),
-            m_gravity(0.3f),
-            m_max(300.0f)
+            m_gravity(0.2f),
+            m_max(250.0f)
     {
         m_sprite.setTexture(*playerTexture, true);
         m_sprite.setOrigin(m_sprite.getLocalBounds().width / 2.0f, m_sprite.getLocalBounds().height / 2.0f);

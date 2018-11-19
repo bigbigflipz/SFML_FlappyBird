@@ -3,34 +3,32 @@
 #include <cstdint>
 #include <deque>
 
-#include "Component/FBInput.h"
 #include "FBPlayer.h"
 #include "SFML/Graphics.hpp"
-#include "SFML/Window/Event.hpp"
 
 class PipeTrap
 {
 public:
 
-	PipeTrap(std::shared_ptr<sf::Texture> pipeTexture, sf::Vector2f pos);
+    PipeTrap(std::shared_ptr<sf::Texture> pipeTexture, sf::Vector2f pos);
 
-	void Init(sf::Vector2f pos);
+    void Init(sf::Vector2f pos);
 
-	void Draw(sf::RenderWindow& renderWindow);
+    void Draw(sf::RenderWindow& renderWindow);
 
-	void Update(sf::View& view);
+    void Update(sf::View& view);
 
-	void Activate();
+    void Activate();
 
-	void Deactivate();
+    void Deactivate();
 
-	bool CheckCollision(const Player& player);
+    bool CheckCollision(const Player& player);
 
-	bool HitScore(const Player& player);
+    bool HitScore(const Player& player);
 
-	const auto GetPosition() const;
+    const auto GetPosition() const;
 
-	const auto IsActive() const;
+    const auto IsActive() const;
 
 private:
 
@@ -48,28 +46,28 @@ class PipeManager
 {
 public:
 
-	PipeManager(std::shared_ptr<sf::Texture> pipeTexture, sf::Vector2f pos);
+    PipeManager(std::shared_ptr<sf::Texture> pipeTexture, sf::Vector2f pos);
 
-	void Reset();
+    void Reset();
 
-	void Update(sf::View& view);
+    void Update(sf::View& view);
 
-	bool CheckCollision(const Player& player) const;
+    bool CheckCollision(const Player& player) const;
 
-	bool CheckScored(const Player& player) const;
+    bool CheckScored(const Player& player) const;
 
-	void Draw(sf::RenderWindow& renderWindow) const;
+    void Draw(sf::RenderWindow& renderWindow) const;
 
 private:
-
-    //controls the gap btwn pipe
-    float m_gapMultiplier;
-    //where will the first pipe appear
-    float m_xStart;
-    sf::Vector2f m_nextPos;
+    
+    float m_gapMultiplier;//controls the gap btwn pipe
+    float m_xStart;//where will the first pipe appear
     float m_middle;
     int m_updown; // -1 for up, 1 for down
-    std::shared_ptr<sf::Texture> m_pipeTexture;
+    sf::Vector2f m_nextPos;
+
     std::deque<std::shared_ptr<PipeTrap>> m_pipePool;
+    
+    std::shared_ptr<sf::Texture> m_pipeTexture;
     std::shared_ptr<sf::Texture> m_firstAvailable;
 };

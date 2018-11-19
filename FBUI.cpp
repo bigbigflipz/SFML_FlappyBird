@@ -4,7 +4,7 @@
 #include <functional>
 #include <unordered_map>
 
-#include "Component/FBInput.h"
+#include "FBInput.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Window/Event.hpp"
 #include "FBUI.h"

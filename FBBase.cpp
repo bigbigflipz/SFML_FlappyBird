@@ -60,13 +60,13 @@ Base::Base(std::shared_ptr<sf::Texture> baseTexture, sf::Vector2f pos)
         auto bound = player.GetGlobalBounds();
         if(m_primary->getGlobalBounds().intersects(bound))
         {
-            std::cout << "HIT! Floor\n";
+
             return true;
         }
 
         if(m_secondary->getGlobalBounds().intersects(bound))
         {
-            std::cout << "HIT! Floor\n";
+
             return true;
         }
 

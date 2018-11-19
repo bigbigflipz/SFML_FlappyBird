@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Component/FBInput.h"
-#include "SFML/Graphics.hpp"
-#include "SFML/Window/Event.hpp"
 #include <memory>
+
+#include "SFML/Graphics.hpp"
+
 class Player
 {
 public:

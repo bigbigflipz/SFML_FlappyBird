@@ -1,13 +1,8 @@
 #pragma once
 
-#include <cstdint>
-#include <functional>
-#include <unordered_map>
-
-#include "Component/FBInput.h"
-#include "SFML/Graphics.hpp"
-#include "SFML/Window/Event.hpp"
 #include <memory>
+
+#include "SFML/Graphics.hpp"
 
 class ScoreUI
 {

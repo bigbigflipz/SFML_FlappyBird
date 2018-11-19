@@ -107,10 +107,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../inc; ../resources; ../src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../lib/sfml</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-system.lib;sfml-window.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,11 +131,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\FBBase.cpp" />
+    <ClCompile Include="..\FBGame.cpp" />
+    <ClCompile Include="..\FBPipe.cpp" />
+    <ClCompile Include="..\FBPlayer.cpp" />
+    <ClCompile Include="..\FBTextureCreator.cpp" />
+    <ClCompile Include="..\FBUI.cpp" />
     <ClCompile Include="..\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\FBBase.h" />
     <ClInclude Include="..\FBGame.h" />
+    <ClInclude Include="..\FBInput.h" />
     <ClInclude Include="..\FBPipe.h" />
     <ClInclude Include="..\FBPlayer.h" />
     <ClInclude Include="..\FBTextureCreator.h" />

@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <deque>
 
-#include "Component/FBInput.h"
+#include "FBInput.h"
 #include "FBPlayer.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Window/Event.hpp"
@@ -83,13 +83,11 @@
 
         if(m_top->getGlobalBounds().intersects(bound))
         {
-            //std::cout << "HIT! TOP\n";
             return true;
         }
 
         if(m_btm->getGlobalBounds().intersects(bound))
         {
-            //std::cout << "HIT! BTM\n";
             return true;
         }
 

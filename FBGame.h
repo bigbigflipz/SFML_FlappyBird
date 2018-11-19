@@ -7,22 +7,25 @@
 #include "FBUI.h"
 
 #include <string>
+#include <fstream>
 
 class FBGame
 {
 public:
 
-	FBGame();
+    FBGame();
 
-	void Init(sf::RenderWindow* window);
+    void Init(sf::RenderWindow* window);
 
-	void Reset();
+    void Reset();
 
-	void HandleInput(sf::Event event);
+    void HandleInput(sf::Event event);
 
-	void GameUpdate(sf::View* view, float dt);
+    void GameUpdate(sf::View* view, float dt);
 
-	void GameDraw(sf::RenderWindow* window);
+    void GameDraw(sf::RenderWindow* window);
+
+    void DeInit();
 
 private:
 
@@ -38,6 +41,8 @@ private:
     sf::Sprite m_mainScreenSprite;
     sf::Sprite m_overSprite;
     sf::Sprite m_gameOverLay;
+    
+    std::fstream m_fileStream;
 
     int m_score;
     int m_highScore;
