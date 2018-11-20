@@ -15,49 +15,49 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\main.cpp">
+    <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FBBase.cpp">
+    <ClCompile Include="..\src\FBUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FBGame.cpp">
+    <ClCompile Include="..\src\FBTextureCreator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FBPipe.cpp">
+    <ClCompile Include="..\src\FBPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FBPlayer.cpp">
+    <ClCompile Include="..\src\FBPipe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FBTextureCreator.cpp">
+    <ClCompile Include="..\src\FBGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FBUI.cpp">
+    <ClCompile Include="..\src\FBBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\FBGame.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBBase.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\FBPlayer.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBGame.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\FBPipe.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBInput.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\FBUI.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBPipe.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\FBBase.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBPlayer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\FBTextureCreator.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBTextureCreator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\FBInput.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\src\FBUI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

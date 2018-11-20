@@ -18,6 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\FBBase.cpp" />
+    <ClCompile Include="..\src\FBGame.cpp" />
+    <ClCompile Include="..\src\FBPipe.cpp" />
+    <ClCompile Include="..\src\FBPlayer.cpp" />
+    <ClCompile Include="..\src\FBTextureCreator.cpp" />
+    <ClCompile Include="..\src\FBUI.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\FBBase.h" />
+    <ClInclude Include="..\src\FBGame.h" />
+    <ClInclude Include="..\src\FBInput.h" />
+    <ClInclude Include="..\src\FBPipe.h" />
+    <ClInclude Include="..\src\FBPlayer.h" />
+    <ClInclude Include="..\src\FBTextureCreator.h" />
+    <ClInclude Include="..\src\FBUI.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{88B95F2A-1B96-4FD8-BF56-2C0C7373A4E8}</ProjectGuid>
@@ -132,24 +150,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\FBBase.cpp" />
-    <ClCompile Include="..\FBGame.cpp" />
-    <ClCompile Include="..\FBPipe.cpp" />
-    <ClCompile Include="..\FBPlayer.cpp" />
-    <ClCompile Include="..\FBTextureCreator.cpp" />
-    <ClCompile Include="..\FBUI.cpp" />
-    <ClCompile Include="..\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\FBBase.h" />
-    <ClInclude Include="..\FBGame.h" />
-    <ClInclude Include="..\FBInput.h" />
-    <ClInclude Include="..\FBPipe.h" />
-    <ClInclude Include="..\FBPlayer.h" />
-    <ClInclude Include="..\FBTextureCreator.h" />
-    <ClInclude Include="..\FBUI.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
