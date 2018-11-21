@@ -42,7 +42,8 @@
         else
             m_speed.y = m_max;
 
-        // angle range from (-45 deg to 90 deg )
+        // angle range from (-45 deg to 90 deg ) 
+        //(-45 to 90 is 135)
         // speed range from -MAX to MAX
         // 0.8 is to smooth out the rotation
         m_rot = -45 + (135 / (m_max * 2) * (m_speed.y + m_max)) * 0.8;

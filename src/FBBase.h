@@ -15,6 +15,7 @@ public:
     Base(std::shared_ptr<sf::Texture> baseTexture, sf::Vector2f pos);
 
     void Reset();
+
     void Update(const sf::View& view);
 
     void Draw(sf::RenderWindow& renderWindow);
@@ -23,6 +24,9 @@ public:
 
 private:
 
+    //cant find a way to scroll texture in sfml so
+    //have two sprite which will keep append each other
+    //to create a scrolling effect
     std::unique_ptr<sf::Sprite> m_primary;
     std::unique_ptr<sf::Sprite> m_secondary;
 

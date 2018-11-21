@@ -50,7 +50,7 @@ public:
 
 private:
 
-    std::vector<std::shared_ptr<sf::Texture>> numbers;
+    std::vector<std::shared_ptr<sf::Texture>> m_numbers;
     sf::Sprite m_left;
     sf::Sprite m_right;
 
@@ -59,7 +59,7 @@ private:
 
     sf::Vector2f m_initPos;
 
-    sf::Font font;
+    sf::Font m_font;
     sf::Text m_score;
     sf::Text m_best;
     sf::Text m_instruction;

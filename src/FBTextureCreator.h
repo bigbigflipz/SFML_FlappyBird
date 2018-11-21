@@ -19,5 +19,5 @@ public:
 
 private:
 
-    std::unordered_map<std::string, std::shared_ptr<sf::Texture>> mapTexture;
+    std::unordered_map<std::string, std::shared_ptr<sf::Texture>> m_mapTexture;
 };

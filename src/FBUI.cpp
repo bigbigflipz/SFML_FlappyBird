@@ -25,34 +25,34 @@ ScoreUI::ScoreUI(sf::Vector2f pos,
         m_doubleDigit(false),
         m_doubleDigitHS(false)
 {
-    numbers.emplace_back(zero);
-    numbers.emplace_back(one);
-    numbers.emplace_back(two);
-    numbers.emplace_back(three);
-    numbers.emplace_back(four);
-    numbers.emplace_back(five);
-    numbers.emplace_back(six);
-    numbers.emplace_back(seven);
-    numbers.emplace_back(eight);
-    numbers.emplace_back(nine);
+    m_numbers.emplace_back(zero);
+    m_numbers.emplace_back(one);
+    m_numbers.emplace_back(two);
+    m_numbers.emplace_back(three);
+    m_numbers.emplace_back(four);
+    m_numbers.emplace_back(five);
+    m_numbers.emplace_back(six);
+    m_numbers.emplace_back(seven);
+    m_numbers.emplace_back(eight);
+    m_numbers.emplace_back(nine);
 
 
-    font.loadFromFile("../resources/fonts/FlappyBirdy.ttf");
+    m_font.loadFromFile("../resources/fonts/FlappyBirdy.ttf");
 
     // select the font
-    m_score.setFont(font); // font is a sf::Font
+    m_score.setFont(m_font); // font is a sf::Font
     m_score.setString("Score");
     m_score.setFillColor(sf::Color::Black);
     m_score.setStyle(sf::Text::Bold);
     m_score.setCharacterSize(60);
 
-    m_best.setFont(font); // font is a sf::Font
+    m_best.setFont(m_font); // font is a sf::Font
     m_best.setString("Best");
     m_best.setFillColor(sf::Color::Red);
     m_best.setStyle(sf::Text::Bold);
     m_best.setCharacterSize(60);
 
-    m_instruction.setFont(font); // font is a sf::Font
+    m_instruction.setFont(m_font); // font is a sf::Font
     m_instruction.setString("Press Space");
     m_instruction.setFillColor(sf::Color::Red);
     m_instruction.setStyle(sf::Text::Bold);
@@ -71,7 +71,7 @@ void ScoreUI::UpdateScore(int score)
 {
     if(score < 10)
     {
-        m_left.setTexture(*numbers[score], true);
+        m_left.setTexture(*m_numbers[score], true);
     }
     else
     {
@@ -81,8 +81,8 @@ void ScoreUI::UpdateScore(int score)
         int right = score % 10;
         int left = score / 10 % 10;
 
-        m_left.setTexture(*numbers[left], true);
-        m_right.setTexture(*numbers[right], true);
+        m_left.setTexture(*m_numbers[left], true);
+        m_right.setTexture(*m_numbers[right], true);
     }
 }
 
@@ -90,7 +90,7 @@ void ScoreUI::UpdateHighScore(int score)
 {
     if(score < 10)
     {
-        m_leftHS.setTexture(*numbers[score], true);
+        m_leftHS.setTexture(*m_numbers[score], true);
     }
     else
     {
@@ -100,8 +100,8 @@ void ScoreUI::UpdateHighScore(int score)
         int right = score % 10;
         int left = score / 10 % 10;
 
-        m_leftHS.setTexture(*numbers[left], true);
-        m_rightHS.setTexture(*numbers[right], true);
+        m_leftHS.setTexture(*m_numbers[left], true);
+        m_rightHS.setTexture(*m_numbers[right], true);
     }
 }
 
@@ -145,7 +145,6 @@ void ScoreUI::DrawGameOverScore(sf::RenderWindow& renderWindow)
 
     if(!m_doubleDigit)
     {
-
         //center the font
         m_left.setPosition(x - leftSizeX / 2, y);
         renderWindow.draw(m_left);

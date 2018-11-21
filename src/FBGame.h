@@ -29,7 +29,6 @@ public:
 
 private:
 
-    //static const std::string IMAGE_PATH("../resources/images/sprites/");
 
     std::unique_ptr<TextureCreator> m_textureMgr;
     std::unique_ptr<Base> m_baseMgr;

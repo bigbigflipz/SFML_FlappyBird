@@ -34,9 +34,11 @@ Base::Base(std::shared_ptr<sf::Texture> baseTexture, sf::Vector2f pos)
     }
     void Base::Update(const sf::View& view)
     {
+        //right edges of both sprite
         float y1 = m_primary->getPosition().x + m_primary->getTextureRect().width;
         float y2 = m_secondary->getPosition().x + m_secondary->getTextureRect().width;
 
+        //if the sprite is out of screen(left side) append it to the other sprite
         if(y1 < view.getCenter().x - view.getSize().x / 2)
         {
             m_primary->setPosition(sf::Vector2f(m_secondary->getPosition().x + m_secondary->getTextureRect().width,
